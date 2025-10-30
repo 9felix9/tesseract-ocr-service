@@ -1,5 +1,16 @@
 # ocr-email-parser
-What does this project do?
+
+## Description
+
+This service is a FastAPI-based OCR (Optical Character Recognition) microservice that extracts text from images. The service uses Tesseract OCR for text recognition from uploaded image files (JPG, PNG, etc.).
+
+**Main Features:**
+- `/ocr` POST endpoint for text extraction from images
+- Automatic image conversion to grayscale for better OCR accuracy
+- Error handling and detailed response messages
+- Support for various image formats
+
+The service is containerized and can be easily deployed via Docker Compose.
 
 ## Assumptions
 - fastAPI project
