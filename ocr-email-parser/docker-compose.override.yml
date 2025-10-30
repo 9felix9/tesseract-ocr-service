@@ -1,0 +1,6 @@
+services:  # prod config
+  app:
+    entrypoint: scripts/app-entrypoint.sh
+    restart: always
+    ports:
+      - "127.0.0.1:8000:8000"
