@@ -14,7 +14,7 @@ async def image_to_text(raw_image_url: dict):
     """
     try:
         resp = requests.get(raw_image_url["url"], timeout=10)
-        resp.raise_for_status()  # HTTP-error if not 200
+        resp.raise_for_status()  # HTTP-error if not 200 message
 
         img = Image.open(BytesIO(resp.content)).convert("L")  # makes image grey -> better readability for extracting 
 
