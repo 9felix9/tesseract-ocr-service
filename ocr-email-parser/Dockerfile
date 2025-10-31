@@ -1,15 +1,20 @@
 FROM python:3.10-slim
 
+# Installiere Tesseract OCR
 RUN apt-get update && apt-get install -y tesseract-ocr && apt-get clean
 
+# Arbeitsverzeichnis
 WORKDIR /app
 
-COPY requirements.txt .
+# Requirements installieren
+COPY requirements/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY main.py .
+# Haupt-App kopieren (liegt bei dir evtl. in src/)
+COPY src/main.py .
 
-# hiermit wird der Port "öffentlich" gemacht - docker hat standardmäßig keinen Port offen
+# Port für Cloud Run (Standard 8080)
 EXPOSE 8080
 
-CMD [ "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
+# App starten (HOST=0.0.0.0 ist Pflicht für Cloud Run)
+CMD ["bash", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT:-8080}"]
